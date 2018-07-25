@@ -3,7 +3,7 @@ package com.cityu.airship.model
 class MotorSerializer {
 
     fun serializeBytes(motors: List<Motor>): ByteArray {
-        return motors.map { motor -> motor.getByte() }.toByteArray()
+        return (listOf(255.toByte()) + motors.map { motor -> motor.getByte() }).toByteArray()
     }
 
     fun serializeString(motors: List<Motor>): String {
