@@ -21,12 +21,7 @@ class MainActivity : AppCompatActivity() {
         joystick.setOnMoveListener({ angle, strength ->
             flightModel.setDegree(angle)
             debugText.text = motorSerializer.serializeString(flightModel.motors)
-//            ble.sendData(motorSerializer.serializeBytes(flightModel.motors).dropLast(2).toByteArray())
-            ble.sendData(byteArrayOf(flightModel.motors[0].getByte()))
-            ble.sendData(byteArrayOf(flightModel.motors[1].getByte()))
-            ble.sendData(byteArrayOf(flightModel.motors[2].getByte()))
-
-            Log.i("app", flightModel.motors[0].getByte().toString())
+            ble.sendData(motorSerializer.serializeBytes(flightModel.motors))
         }, 500)
 
         ble.connect(this, deviceAddress, object: BLEConnection.ConnectionChangedListener {

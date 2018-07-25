@@ -1,6 +1,6 @@
 package com.cityu.airship.model
 
-class Motor {
+class Motor(val reverse: Boolean) {
 
     /**
      * Speed in range <-1.0, 1.0>
@@ -8,7 +8,8 @@ class Motor {
     var speed = 0.0
 
     fun getByte(): Byte {
-        return ((speed + 1) * 127).toInt().toByte()
+        val motorSpeed = if(reverse) speed else -speed
+        return ((motorSpeed + 1.0) * 127).toInt().toByte()
     }
 
 }
